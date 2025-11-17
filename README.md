@@ -35,8 +35,6 @@ Interactive Power BI dashboard analyzing readmission patterns across 2,497 U.S. 
 Himansh Rajak | himanshr1107@gmail.com | [LinkedIn](https://linkedin.com/in/himansh-rajak)
 ```
 
-Built with Power BI, DAX, and healthcare domain expertise.
-
 View the full project: [YOUR GITHUB PAGES LINK]
 
 #HealthcareAnalytics #DataAnalytics #PowerBI #Portfolio
