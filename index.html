@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Himansh Rajak - Healthcare Analytics Portfolio</title>
+    <title>Hospital Readmission Analytics Dashboard - Power BI Project</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
+        
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: #f5f5f5;
-            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
             line-height: 1.6;
         }
         
@@ -18,136 +22,141 @@
             color: white;
             padding: 60px 20px;
             text-align: center;
+            border-radius: 12px;
+            margin-bottom: 40px;
         }
         
         header h1 { font-size: 2.5em; margin-bottom: 10px; }
-        header p { font-size: 1.2em; opacity: 0.9; }
+        header p { font-size: 1.2em; opacity: 0.95; }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        
-        .project {
-            background: white;
-            border-radius: 12px;
+        .content {
+            background: #242424;
             padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid #333;
         }
         
-        .project h2 {
-            color: #2c5f8d;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        
-        .project-meta {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .badge {
-            background: #e3f2ff;
-            color: #2c5f8d;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-        
-        .description {
-            font-size: 1.1em;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        
-        .insights {
-            background: #f8f9fa;
-            border-left: 4px solid #2c5f8d;
-            padding: 20px;
-            margin: 30px 0;
-        }
-        
-        .insights h3 {
-            color: #2c5f8d;
+        h2 {
+            color: #4a8ec2;
+            margin-top: 30px;
             margin-bottom: 15px;
+            font-size: 1.8em;
         }
         
-        .insights ul {
-            list-style: none;
-            padding-left: 0;
+        h3 {
+            color: #6ba3d0;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
         }
         
-        .insights li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
+        p, li {
+            color: #c4c4c4;
+            margin: 10px 0;
         }
         
-        .insights li:before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: #2c5f8d;
-            font-weight: bold;
+        ul {
+            margin-left: 20px;
         }
         
         .screenshot {
             width: 100%;
             border-radius: 8px;
             margin: 20px 0;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             transition: transform 0.3s ease;
+            border: 2px solid #333;
         }
         
         .screenshot:hover {
             transform: scale(1.02);
-        }
-        
-        .buttons {
-            display: flex;
-            gap: 15px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            border-color: #2c5f8d;
         }
         
         .btn {
             display: inline-block;
-            padding: 14px 28px;
-            border-radius: 8px;
+            background: #2c5f8d;
+            color: white;
+            padding: 12px 24px;
             text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 10px 10px 0;
             font-weight: 600;
             transition: all 0.3s ease;
         }
         
-        .btn-primary {
-            background: #2c5f8d;
-            color: white;
-        }
-        
-        .btn-primary:hover {
+        .btn:hover { 
             background: #1e4266;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(44, 95, 141, 0.3);
+            box-shadow: 0 4px 12px rgba(44, 95, 141, 0.5);
         }
         
-        .btn-secondary {
-            background: white;
-            color: #2c5f8d;
-            border: 2px solid #2c5f8d;
+        .badge {
+            display: inline-block;
+            background: #2d2d4a;
+            color: #4a8ec2;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.85em;
+            margin: 5px;
+            border: 1px solid #3d3d5a;
+            font-weight: 600;
         }
         
-        .btn-secondary:hover {
-            background: #2c5f8d;
-            color: white;
+        strong {
+            color: #4a8ec2;
+        }
+        
+        .highlight-box {
+            background: #2d2d4a;
+            border-left: 4px solid #2c5f8d;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+            border: 1px solid #3d3d5a;
+        }
+        
+        .highlight-box h3 {
+            margin-top: 0;
+            color: #4a8ec2;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #4a8ec2;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #888;
+            text-transform: uppercase;
         }
         
         footer {
-            background: #333;
-            color: white;
+            background: #1a1a1a;
+            color: #888;
             text-align: center;
             padding: 30px 20px;
             margin-top: 60px;
+            border-top: 1px solid #333;
         }
         
         footer a {
@@ -156,82 +165,180 @@
         }
         
         footer a:hover {
+            color: #6ba3d0;
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Himansh Rajak</h1>
-        <p>Data Analyst | Power BI | SQL | Python</p>
-        <p style="font-size: 1em; margin-top: 10px;">
-            <a href="mailto:himanshr1107@gmail.com" style="color: white; text-decoration: none;">himanshr1107@gmail.com</a> | 
-            <a href="https://linkedin.com/in/himansh-rajak" style="color: white; text-decoration: none;">LinkedIn</a> | 
-            <a href="https://github.com/Himansh-11" style="color: white; text-decoration: none;">GitHub</a>
-        </p>
+        <h1>🏥 Hospital Readmission Analytics Dashboard</h1>
+        <p>Identified $207.42M in Medicare Savings Opportunities Across 2,497 U.S. Hospitals</p>
     </header>
     
-    <div class="container">
-        <div class="project">
-            <h2>Hospital Readmission Analytics Dashboard</h2>
-            
-            <div class="project-meta">
-                <span class="badge">Power BI</span>
-                <span class="badge">DAX</span>
-                <span class="badge">Healthcare Analytics</span>
-                <span class="badge">Data Modeling</span>
+    <div class="content">
+        <div style="margin-bottom: 20px;">
+            <span class="badge">Power BI</span>
+            <span class="badge">Power Query</span>
+            <span class="badge">DAX</span>
+            <span class="badge">Data Modeling</span>
+            <span class="badge">Data Visualization</span>
+            <span class="badge">Healthcare Analytics</span>
+            <span class="badge">Healthcare KPIs</span>
+            <span class="badge">KPI Development</span>
+            <span class="badge">Financial Analytics</span>
+            <span class="badge">Financial Impact Analysis</span>
+            <span class="badge">CMS Quality Metrics</span>
+            <span class="badge">Readmission Analytics</span>
+        </div>
+        
+        <h2>📊 Project Overview</h2>
+        <p>Comprehensive analysis of hospital readmission patterns using CMS (Centers for Medicare & Medicaid Services) data to identify cost-saving opportunities and performance improvement strategies across the U.S. healthcare system.</p>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-label">Hospitals Analyzed</div>
+                <div class="stat-value">2,497</div>
             </div>
-            
-            <p class="description">
-                Comprehensive analysis of hospital readmission patterns across 2,497 U.S. hospitals using CMS (Centers for Medicare & Medicaid Services) data. 
-                This interactive dashboard identifies cost-saving opportunities, performance trends, and geographic disparities in healthcare quality metrics.
-            </p>
-            
-            <div class="insights">
-                <h3>💡 Key Findings</h3>
-                <ul>
-                    <li><strong>$207.42 million</strong> potential Medicare savings identified through performance optimization</li>
-                    <li><strong>242% variation</strong> in hospital performance (0.48 to 1.64 excess readmission ratio)</li>
-                    <li><strong>Geographic patterns</strong> reveal state-level disparities in readmission rates</li>
-                    <li><strong>Pneumonia</strong> represents highest cost condition for readmissions</li>
-                </ul>
+            <div class="stat-card">
+                <div class="stat-label">States Covered</div>
+                <div class="stat-value">50+</div>
             </div>
-            
-            <h3>Dashboard Pages</h3>
-            
-            <h4>Page 1: National Overview</h4>
-            <img src="page1-overview.png" alt="Dashboard Page 1" class="screenshot">
-            <p>Geographic distribution, state rankings, and national performance metrics with interactive filters.</p>
-            
-            <h4>Page 2: Hospital Comparison</h4>
-            <img src="page2-comparison.png" alt="Dashboard Page 2" class="screenshot">
-            <p>Hospital-level drill-down analysis with patient satisfaction correlation and performance categorization.</p>
-            
-            <h4>Page 3: Financial Impact</h4>
-            <img src="page3-financial.png" alt="Dashboard Page 3" class="screenshot">
-            <p>Cost analysis by condition and state, ROI opportunities, and strategic recommendations.</p>
-            
-            <div class="buttons">
-                <a href="Healthcare_Dashboard.pbix" download class="btn btn-primary">📥 Download Dashboard (.pbix)</a>
-                <a href="https://github.com/Himansh-11/healthcare-analytics-portfolio" class="btn btn-secondary">📂 View on GitHub</a>
+            <div class="stat-card">
+                <div class="stat-label">Potential Savings</div>
+                <div class="stat-value">$207M</div>
             </div>
-            
-            <div class="insights">
-                <h3>🛠️ Technical Implementation</h3>
-                <ul>
-                    <li><strong>Data Sources:</strong> CMS Hospital Compare dataset (2024)</li>
-                    <li><strong>Data Model:</strong> Star schema with 3 tables, optimized relationships</li>
-                    <li><strong>DAX Measures:</strong> 15+ custom calculations including dynamic filtering, RANKX, AVERAGEX</li>
-                    <li><strong>Visualizations:</strong> Maps, scatter plots, waterfall charts, conditional formatting</li>
-                    <li><strong>Interactivity:</strong> Cross-filtering, slicers, drill-through navigation</li>
-                </ul>
+            <div class="stat-card">
+                <div class="stat-label">Performance Range</div>
+                <div class="stat-value">116%</div>
             </div>
+        </div>
+
+        <div class="highlight-box">
+            <h3>❗ Problem Statement</h3>
+            <p>Hospital readmissions within 30 days cost Medicare billions annually and indicate gaps in care quality. Despite risk-adjustment models, significant variation exists across hospitals and states. Healthcare administrators lack comprehensive tools to:</p>
+            <ul>
+                <li>Identify geographic patterns in readmission performance</li>
+                <li>Compare hospital-level outcomes against national benchmarks</li>
+                <li>Quantify financial impact of excess readmissions</li>
+                <li>Prioritize improvement initiatives based on ROI</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <h3>🔍 What I Did</h3>
+            <p><strong>Data Acquisition & Preparation:</strong></p>
+            <ul>
+                <li>Downloaded CMS Hospital Compare datasets (Hospital Readmissions, General Info, Patient Satisfaction)</li>
+                <li>Cleaned and transformed data using Power Query (removed duplicates, handled missing values, standardized formats)</li>
+                <li>Created star schema data model with proper relationships and cardinality</li>
+            </ul>
+            <p><strong>Analysis & Development:</strong></p>
+            <ul>
+                <li>Built 15+ DAX measures including dynamic filtering, RANKX, AVERAGEX, and financial calculations</li>
+                <li>Designed 3-page interactive dashboard: National Overview → Hospital Comparison → Financial Impact</li>
+                <li>Implemented conditional formatting, cross-filtering, and drill-through navigation</li>
+                <li>Created calculated columns for performance categorization and hospital-level metrics</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <h3>💡 Key Findings</h3>
+            <ul>
+                <li><strong>$207.42M Annual Opportunity:</strong> Identified potential Medicare savings if all hospitals achieved top-quartile performance (excess ratio < 0.87)</li>
+                <li><strong>116% Performance Variation:</strong> Hospital excess readmission ratios range from 0.48 (52% better than benchmark) to 1.64 (64% worse than benchmark)</li>
+                <li><strong>Geographic Disparities:</strong> State-level performance varies from 0.92 to 1.03, suggesting regional differences in care quality and infrastructure</li>
+                <li><strong>Weak Satisfaction Correlation:</strong> Patient satisfaction shows minimal relationship with readmission rates, indicating distinct quality dimensions</li>
+                <li><strong>Heart Failure = Highest Cost:</strong> Identified highest-cost condition for targeted intervention programs</li>
+                <li><strong>56% Above Benchmark:</strong> Majority of hospitals exceed national readmission expectations, highlighting systemic improvement opportunities</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <h3>🎯 Strategic Recommendations</h3>
+            <ul>
+                <li><strong>Targeted Interventions:</strong> Focus improvement efforts on heart failure readmissions (highest cost driver) with evidence-based discharge protocols</li>
+                <li><strong>Best Practice Sharing:</strong> Implement knowledge transfer programs from top-performing states (ratio < 0.90) to underperforming regions</li>
+                <li><strong>High-Impact Hospitals:</strong> Prioritize the top 100 hospitals by excess cost for intensive quality improvement initiatives - potential for maximum ROI</li>
+                <li><strong>Condition-Specific Protocols:</strong> Develop standardized post-acute follow-up procedures for high-readmission conditions</li>
+                <li><strong>State-Level Collaboration:</strong> Share resources and strategies among hospitals within underperforming states to address systemic issues</li>
+            </ul>
+        </div>
+        
+        <h2>📱 Dashboard Pages</h2>
+        
+        <h3>Page 1: National Overview</h3>
+        <img src="page1-overview.png" alt="Dashboard Page 1 - National Overview" class="screenshot">
+        <p><strong>Features:</strong> Geographic heat map, state performance rankings, national KPIs, performance distribution, interactive filters by state/type/ownership/condition.</p>
+        <p><strong>Insights:</strong> Visualizes geographic disparities, identifies top and bottom performing states, shows distribution of hospital performance categories.</p>
+        
+        <h3>Page 2: Hospital Comparison & Drill-Down</h3>
+        <img src="page2-comparison.png" alt="Dashboard Page 2 - Hospital Comparison" class="screenshot">
+        <p><strong>Features:</strong> Scatter plot correlating patient satisfaction vs. readmission performance, searchable hospital-level table with conditional formatting, dynamic KPIs showing selected/best/worst hospitals.</p>
+        <p><strong>Insights:</strong> Enables hospital-level analysis, reveals satisfaction-performance relationships, supports comparative benchmarking for targeted improvements.</p>
+        
+        <h3>Page 3: Financial Impact & ROI Analysis</h3>
+        <img src="page3-financial.png" alt="Dashboard Page 3 - Financial Impact" class="screenshot">
+        <p><strong>Features:</strong> Waterfall chart breaking down costs by condition, top 10 states by total readmission cost, cost distribution by performance category, ROI calculations.</p>
+        <p><strong>Insights:</strong> Quantifies financial impact, identifies highest-cost conditions and states, demonstrates potential savings from performance improvement.</p>
+
+        <h2>🛠️ Technical Implementation</h2>
+        <h3>Data Sources</h3>
+        <ul>
+            <li><strong>CMS Hospital Compare (2024):</strong> Hospital Readmissions Reduction Program data</li>
+            <li><strong>Tables:</strong> Hospital Readmissions (11,927 records), Hospital General Info (2,497 hospitals), Patient Satisfaction (3,975 records)</li>
+        </ul>
+
+        <h3>Data Model</h3>
+        <ul>
+            <li><strong>Schema:</strong> Star schema with Hospital General Info as dimension table</li>
+            <li><strong>Relationships:</strong> One-to-many from General Info to Readmissions/Satisfaction via Hospital ID</li>
+            <li><strong>Cardinality:</strong> Properly configured (1:*) with bidirectional cross-filtering where needed</li>
+        </ul>
+
+        <h3>Key DAX Measures</h3>
+        <ul>
+            <li><strong>Dynamic Filtering:</strong> Selected Hospitals, Best/Worst in Selection using ALLSELECTED</li>
+            <li><strong>Rankings:</strong> State rankings with RANKX, performance quartiles with SWITCH</li>
+            <li><strong>Financial Calculations:</strong> Cost by condition, excess cost, ROI projections</li>
+            <li><strong>Aggregations:</strong> AVERAGEX for state-level metrics, CALCULATE with filters for segmentation</li>
+        </ul>
+
+        <h3>Visualization Techniques</h3>
+        <ul>
+            <li><strong>Geographic Analysis:</strong> ArcGIS map with color saturation by performance</li>
+            <li><strong>Correlation Analysis:</strong> Scatter plot with dynamic legends and tooltips</li>
+            <li><strong>Financial Storytelling:</strong> Waterfall chart showing cost buildup, donut chart for segmentation</li>
+            <li><strong>Interactivity:</strong> Cross-page navigation, synchronized slicers, drill-through capabilities</li>
+        </ul>
+
+        <h2>📈 Business Impact</h2>
+        <p>This dashboard enables healthcare administrators and policy makers to:</p>
+        <ul>
+            <li>✅ <strong>Identify underperforming hospitals</strong> requiring intervention</li>
+            <li>✅ <strong>Quantify ROI</strong> of quality improvement initiatives</li>
+            <li>✅ <strong>Benchmark performance</strong> against national and state averages</li>
+            <li>✅ <strong>Prioritize resources</strong> based on financial impact</li>
+            <li>✅ <strong>Track geographic trends</strong> for policy development</li>
+            <li>✅ <strong>Support data-driven decision-making</strong> for hospital operations</li>
+        </ul>
+        
+        <h2>🔗 Project Resources</h2>
+        <div style="margin-top: 20px; margin-bottom: 40px;">
+            <a href="Healthcare_Dashboard.pbix" download class="btn">📥 Download Dashboard (.pbix)</a>
+            <a href="https://github.com/Himansh-11/healthcare-analytics-portfolio" class="btn">📂 View on GitHub</a>
+            <a href="https://himansh-11.github.io" class="btn">🏠 Portfolio Home</a>
         </div>
     </div>
     
     <footer>
-        <p>Himansh Rajak | <a href="mailto:himanshr1107@gmail.com">himanshr1107@gmail.com</a></p>
-        <p><a href="https://linkedin.com/in/himansh-rajak">LinkedIn</a> | <a href="https://github.com/Himansh-11">GitHub</a></p>
+        <p><strong>Himansh Rajak</strong> | Healthcare Data Analyst</p>
+        <p>
+            <a href="mailto:himanshr1107@gmail.com">himanshr1107@gmail.com</a> | 
+            <a href="https://linkedin.com/in/himansh-rajak">LinkedIn</a> | 
+            <a href="https://github.com/Himansh-11">GitHub</a>
+        </p>
+        <p style="margin-top: 15px; font-size: 0.9em;">Built with Power BI | Hosted on GitHub Pages</p>
     </footer>
 </body>
 </html>
