@@ -5,8 +5,8 @@
 Interactive Power BI dashboard analyzing readmission patterns across 2,497 U.S. hospitals using CMS data.
 
 ### 🎯 Key Findings
-- **$4.2B** potential Medicare savings identified
-- **116%** performance variation across hospitals
+- **$207.42M** potential Medicare savings identified
+- **242%** performance variation across hospitals
 - Geographic disparities reveal state-level quality differences
 - Heart failure represents the highest-cost readmission condition
 
