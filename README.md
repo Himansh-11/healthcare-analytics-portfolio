@@ -1,5 +1,3 @@
-# Healthcare Analytics Portfolio
-
 ## Hospital Readmission Analysis Dashboard
 
 Interactive Power BI dashboard analyzing readmission patterns across 2,497 U.S. hospitals using CMS data.
